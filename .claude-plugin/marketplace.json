@@ -1,0 +1,17 @@
+{
+  "name": "lweixw-skills",
+  "description": "Per-skill Claude Code plugins. Install only what you need.",
+  "owner": {
+    "name": "Leo Wei",
+    "email": "3482527+lweixw@users.noreply.github.com"
+  },
+  "plugins": [
+    {
+      "name": "grill-me-with-docs",
+      "source": "./plugins/grill-me-with-docs",
+      "description": "Grill a plan against your project's domain model; updates CONTEXT.md and ADRs inline.",
+      "category": "planning",
+      "tags": ["grilling", "domain-modeling", "adr", "context"]
+    }
+  ]
+}

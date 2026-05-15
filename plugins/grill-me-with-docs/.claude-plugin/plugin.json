@@ -1,0 +1,12 @@
+{
+  "name": "grill-me-with-docs",
+  "description": "Grilling session that stress-tests a plan against your project's domain model, sharpens terminology, and updates CONTEXT.md and ADRs inline.",
+  "author": {
+    "name": "Leo Wei",
+    "email": "3482527+lweixw@users.noreply.github.com"
+  },
+  "homepage": "https://github.com/lweixw/skills",
+  "repository": "https://github.com/lweixw/skills.git",
+  "license": "MIT",
+  "keywords": ["claude-code", "skill", "grilling", "domain-modeling", "adr"]
+}
