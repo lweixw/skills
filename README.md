@@ -27,6 +27,7 @@ List what's available:
 | Plugin | What it does |
 |--------|--------------|
 | [`grill-me-with-docs`](plugins/grill-me-with-docs/) | Stress-tests a plan against your project's domain model; updates `CONTEXT.md` and ADRs inline. |
+| [`local-review`](plugins/local-review/) | Multi-agent review of uncommitted changes (bugs, security, CLAUDE.md compliance, types, simplification) with a confidence filter. |
 
 ## Structure
 

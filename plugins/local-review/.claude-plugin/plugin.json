@@ -1,0 +1,12 @@
+{
+  "name": "local-review",
+  "description": "Multi-agent review of uncommitted local changes — bugs, security, CLAUDE.md compliance, type safety, and simplification — with a confidence filter before reporting.",
+  "author": {
+    "name": "Leo Wei",
+    "email": "3482527+lweixw@users.noreply.github.com"
+  },
+  "homepage": "https://github.com/lweixw/skills",
+  "repository": "https://github.com/lweixw/skills.git",
+  "license": "MIT",
+  "keywords": ["claude-code", "code-review", "git", "security", "typescript", "refactoring"]
+}

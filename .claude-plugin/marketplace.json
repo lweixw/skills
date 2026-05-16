@@ -12,6 +12,13 @@
       "description": "Grill a plan against your project's domain model; updates CONTEXT.md and ADRs inline.",
       "category": "planning",
       "tags": ["grilling", "domain-modeling", "adr", "context"]
+    },
+    {
+      "name": "local-review",
+      "source": "./plugins/local-review",
+      "description": "Multi-agent code review of uncommitted local changes with a confidence filter before reporting.",
+      "category": "review",
+      "tags": ["code-review", "git", "security", "typescript", "refactoring"]
     }
   ]
 }
