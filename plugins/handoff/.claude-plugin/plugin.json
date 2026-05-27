@@ -1,0 +1,12 @@
+{
+  "name": "handoff",
+  "description": "Compact the current conversation into a handoff document for another agent to pick up.",
+  "author": {
+    "name": "Leo Wei",
+    "email": "3482527+lweixw@users.noreply.github.com"
+  },
+  "homepage": "https://github.com/lweixw/skills",
+  "repository": "https://github.com/lweixw/skills.git",
+  "license": "MIT",
+  "keywords": ["claude-code", "skill", "handoff", "productivity"]
+}
