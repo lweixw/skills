@@ -19,6 +19,13 @@
       "description": "Multi-agent code review of uncommitted local changes with a confidence filter before reporting.",
       "category": "review",
       "tags": ["code-review", "git", "security", "typescript", "refactoring"]
+    },
+    {
+      "name": "handoff",
+      "source": "./plugins/handoff",
+      "description": "Compact the current conversation into a handoff document for another agent to pick up.",
+      "category": "productivity",
+      "tags": ["handoff", "context", "compaction"]
     }
   ]
 }
