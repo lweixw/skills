@@ -1,0 +1,12 @@
+{
+  "name": "claude-it",
+  "description": "Create a CLAUDE.md in the repo root from a bundled behavioral-guidelines template, localized to the current project.",
+  "author": {
+    "name": "Leo Wei",
+    "email": "3482527+lweixw@users.noreply.github.com"
+  },
+  "homepage": "https://github.com/lweixw/skills",
+  "repository": "https://github.com/lweixw/skills.git",
+  "license": "MIT",
+  "keywords": ["claude-code", "skill", "claude-md", "scaffolding", "guidelines"]
+}

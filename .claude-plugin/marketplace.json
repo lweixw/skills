@@ -26,6 +26,13 @@
       "description": "Compact the current conversation into a handoff document for another agent to pick up.",
       "category": "productivity",
       "tags": ["handoff", "context", "compaction"]
+    },
+    {
+      "name": "claude-it",
+      "source": "./plugins/claude-it",
+      "description": "Create a CLAUDE.md in the repo root from a bundled behavioral-guidelines template, localized to the current project.",
+      "category": "scaffolding",
+      "tags": ["claude-md", "scaffolding", "guidelines", "init"]
     }
   ]
 }
