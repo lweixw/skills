@@ -6,6 +6,12 @@ allowed-tools: Bash(git diff:*), Bash(git status:*), Bash(git log:*), Bash(git b
 
 Provide a code review for uncommitted local changes (both staged and unstaged).
 
+**Model selection**: The steps below name specific Claude models (Opus, Sonnet, Haiku) as defaults, but these are *capability tiers*, not hard requirements. If a named model is unavailable — e.g. this skill runs under a different model lineup or provider — substitute the closest available agent by capability. Never block on an exact model name; always pick the best available agent for the tier:
+
+- **Fast tier** (default: Haiku) — cheap, high-throughput work such as file lookup and per-issue confidence scoring. Optimize for speed and low cost.
+- **Balanced tier** (default: Sonnet) — strong reasoning at moderate cost, used for the parallel review agents. Optimize for review depth while staying cheap enough to run several in parallel.
+- **Strong tier** (default: Opus) — the most capable agent available, used for orchestration and summarizing the change set.
+
 **Optional Focus**: If the user's request includes a focus area or extra context (e.g., "focus on auth logic", "check error handling in the new API", "I refactored the payment flow"), treat it as the primary focus for the review. The focus might be:
 - A specific area to focus on (e.g., "focus on the payment flow")
 - Context about what changed (e.g., "I refactored the auth module")
@@ -19,16 +25,16 @@ When a focus is provided, all review agents should:
 
 To do this, follow these steps precisely:
 
-1. Use a claude-opus-4-6 agent to check the current state of the working directory:
+1. Use a **strong-tier** agent (e.g. Opus) to check the current state of the working directory:
    - Run `git status` to see what files have changes
    - Run `git diff` for unstaged changes and `git diff --staged` for staged changes
    - If there are no changes, do not proceed and inform the user
    - Return a summary of what files changed and the nature of the changes
    - If a focus was provided, note which files/changes are most relevant to that focus
 
-2. Use another Haiku agent to find any relevant CLAUDE.md files: the root CLAUDE.md file (if one exists), as well as any CLAUDE.md files in the directories containing modified files
+2. Use a **fast-tier** agent (e.g. Haiku) to find any relevant CLAUDE.md files: the root CLAUDE.md file (if one exists), as well as any CLAUDE.md files in the directories containing modified files
 
-3. Then, launch 5 parallel Sonnet agents to independently code review the changes. Each agent should read the full file context when needed. **If a focus was provided, include it in each agent's prompt so they prioritize that area.** The agents should return a list of issues and the reason each issue was flagged:
+3. Then, launch 5 parallel **balanced-tier** agents (e.g. Sonnet) to independently code review the changes. Each agent should read the full file context when needed. **If a focus was provided, include it in each agent's prompt so they prioritize that area.** The agents should return a list of issues and the reason each issue was flagged:
    a. Agent #1: Audit the changes to make sure they comply with any CLAUDE.md guidelines found. Note that CLAUDE.md is guidance for Claude as it writes code, so not all instructions will be applicable during code review.
    b. Agent #2: Understand the goal of the changes, then read the file changes, then scan for bugs, logic errors, and edge cases. Focus on significant bugs, avoid nitpicks. Check for: null/undefined issues, off-by-one errors, race conditions, resource leaks, error handling gaps.
    c. Agent #3: Scan for security vulnerabilities (OWASP top 10): injection flaws, XSS, auth bypass, sensitive data exposure, insecure dependencies, etc.
@@ -66,7 +72,7 @@ To do this, follow these steps precisely:
 
       Return a list of code clarity and maintainability issues found in the changed code.
 
-4. For each issue found in #3, launch a parallel Haiku agent that takes the issue description and CLAUDE.md files (from step 2), and returns a confidence score from 0-100. The scale is:
+4. For each issue found in #3, launch a parallel **fast-tier** agent (e.g. Haiku) that takes the issue description and CLAUDE.md files (from step 2), and returns a confidence score from 0-100. The scale is:
    a. 0: Not confident at all. This is a false positive that doesn't stand up to light scrutiny, or is a pre-existing issue.
    b. 25: Somewhat confident. This might be a real issue, but may also be a false positive. If the issue is stylistic, it was not explicitly called out in CLAUDE.md.
    c. 50: Moderately confident. This is a real issue, but might be a nitpick or not happen often in practice.
