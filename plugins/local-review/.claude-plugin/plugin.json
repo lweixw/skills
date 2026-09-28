@@ -1,6 +1,6 @@
 {
   "name": "local-review",
-  "description": "Multi-agent review of uncommitted local changes — bugs, security, CLAUDE.md compliance, type safety, and simplification.",
+  "description": "Multi-agent review of uncommitted local changes — bugs, security, CLAUDE.md compliance, type safety, and simplification — with every finding audited by a subagent and all confirmed issues fixed.",
   "author": {
     "name": "Leo Wei",
     "email": "3482527+lweixw@users.noreply.github.com"

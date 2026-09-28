@@ -27,7 +27,7 @@ List what's available:
 | Plugin | What it does |
 |--------|--------------|
 | [`grill-me-with-docs`](plugins/grill-me-with-docs/) | Stress-tests a plan against your project's domain model; updates `CONTEXT.md` and ADRs inline. |
-| [`local-review`](plugins/local-review/) | Multi-agent review of uncommitted changes (bugs, security, CLAUDE.md compliance, types, simplification). |
+| [`local-review`](plugins/local-review/) | Multi-agent review of uncommitted changes (bugs, security, CLAUDE.md compliance, types, simplification); audits each finding, then fixes all confirmed issues. |
 | [`handoff`](plugins/handoff/) | Compact current conversation into handoff doc (OS temp dir) so a fresh agent can resume. |
 
 ## Structure
