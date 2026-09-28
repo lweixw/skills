@@ -16,7 +16,7 @@
     {
       "name": "local-review",
       "source": "./plugins/local-review",
-      "description": "Multi-agent code review of uncommitted local changes with a confidence filter before reporting.",
+      "description": "Multi-agent code review of uncommitted local changes; audits each finding and fixes all confirmed issues.",
       "category": "review",
       "tags": ["code-review", "git", "security", "typescript", "refactoring"]
     },
