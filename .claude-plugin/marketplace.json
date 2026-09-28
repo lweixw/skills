@@ -33,6 +33,13 @@
       "description": "Create a CLAUDE.md in the repo root from a bundled behavioral-guidelines template, localized to the current project.",
       "category": "scaffolding",
       "tags": ["claude-md", "scaffolding", "guidelines", "init"]
+    },
+    {
+      "name": "eli5",
+      "source": "./plugins/eli5",
+      "description": "Explain any topic, code, or error tailored to a specific audience: age, grade level, job role, or relationship.",
+      "category": "communication",
+      "tags": ["eli5", "explain", "teaching", "audience"]
     }
   ]
 }

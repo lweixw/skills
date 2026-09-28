@@ -1,0 +1,12 @@
+{
+  "name": "eli5",
+  "description": "Explain any topic, code, concept, or error tailored to a specific audience (age, grade level, job role, or relationship). Adapted from dreambigou/eli5.",
+  "author": {
+    "name": "Leo Wei",
+    "email": "3482527+lweixw@users.noreply.github.com"
+  },
+  "homepage": "https://github.com/lweixw/skills",
+  "repository": "https://github.com/lweixw/skills.git",
+  "license": "MIT",
+  "keywords": ["claude-code", "skill", "eli5", "explain", "teaching", "communication"]
+}

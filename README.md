@@ -29,6 +29,8 @@ List what's available:
 | [`grill-me-with-docs`](plugins/grill-me-with-docs/) | Stress-tests a plan against your project's domain model; updates `CONTEXT.md` and ADRs inline. |
 | [`local-review`](plugins/local-review/) | Multi-agent review of uncommitted changes (bugs, security, CLAUDE.md compliance, types, simplification); audits each finding, then fixes all confirmed issues. |
 | [`handoff`](plugins/handoff/) | Compact current conversation into handoff doc (OS temp dir) so a fresh agent can resume. |
+| [`claude-it`](plugins/claude-it/) | Scaffold a `CLAUDE.md` in the repo root from a bundled behavioral-guidelines template, localized to the project. |
+| [`eli5`](plugins/eli5/) | Explain any topic, code, or error tailored to an audience (age, grade, job role, relationship). Adapted from [dreambigou/eli5](https://github.com/dreambigou/eli5) (MIT). |
 
 ## Structure
 
