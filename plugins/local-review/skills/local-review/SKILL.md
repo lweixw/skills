@@ -35,9 +35,11 @@ A plain `git clone` into a temp dir is also fine, but remember it will not inclu
 
 Treat the context brief you are given as a starting point, not as truth. Every claim in it that was inferred (by an agent or from the diff) must be checked against the actual code before you rely on it; if the brief is wrong or incomplete, say so in your output and review against what the code really does. The only exception is **decisions the user made explicitly** (listed separately in the brief): accept those as settled — do not re-argue or flag them — but still report a concrete bug in how they were implemented.
 
+Agents use whatever model the session defaults to; do not pin a specific model.
+
 To do this, follow these steps precisely:
 
-1. Use a claude-opus-4-6 agent to check the current state of the working directory:
+1. Use an agent to check the current state of the working directory:
    - Run `git status` to see what files have changes
    - Run `git diff` for unstaged changes and `git diff --staged` for staged changes
    - If there are no changes, do not proceed and inform the user
@@ -50,9 +52,9 @@ To do this, follow these steps precisely:
      - **Assumptions / open questions**: anything inferred that reviewers should verify
    - If a focus was provided, note which files/changes are most relevant to that focus
 
-2. Use another Haiku agent to find any relevant CLAUDE.md files: the root CLAUDE.md file (if one exists), as well as any CLAUDE.md files in the directories containing modified files
+2. Use another agent to find any relevant CLAUDE.md files: the root CLAUDE.md file (if one exists), as well as any CLAUDE.md files in the directories containing modified files
 
-3. Then, launch 5 parallel Sonnet agents to independently code review the changes. Each agent should read the full file context when needed. **Include the read-only rule and the context rule above verbatim in each agent's prompt, plus the full context brief from step 1.** Before sending, check the brief yourself against the diff and the conversation: correct anything wrong, and make sure the "Explicit user decisions" section holds only what the user actually said. **If a focus was provided, include it in each agent's prompt so they prioritize that area.** Each agent should return a list of issues, and for each issue: file and line, what is wrong, a concrete scenario showing how it breaks (or why it matters), a suggested fix, whether it was verified in a temp copy, and a severity of `critical` (must fix before commit — real bug, security hole, data loss) or `warning` (real problem, lower impact). Report every issue you believe is real — do not self-filter by severity; a separate audit step verifies each finding:
+3. Then, launch 5 parallel agents to independently code review the changes. Each agent should read the full file context when needed. **Include the read-only rule and the context rule above verbatim in each agent's prompt, plus the full context brief from step 1.** Before sending, check the brief yourself against the diff and the conversation: correct anything wrong, and make sure the "Explicit user decisions" section holds only what the user actually said. **If a focus was provided, include it in each agent's prompt so they prioritize that area.** Each agent should return a list of issues, and for each issue: file and line, what is wrong, a concrete scenario showing how it breaks (or why it matters), a suggested fix, whether it was verified in a temp copy, and a severity of `critical` (must fix before commit — real bug, security hole, data loss) or `warning` (real problem, lower impact). Report every issue you believe is real — do not self-filter by severity; a separate audit step verifies each finding:
    a. Agent #1: Audit the changes to make sure they comply with any CLAUDE.md guidelines found. Note that CLAUDE.md is guidance for Claude as it writes code, so not all instructions will be applicable during code review.
    b. Agent #2: Understand and confirm the goal of the changes against the code, then read the file changes, then scan for bugs, logic errors, and edge cases. Focus on significant bugs, avoid nitpicks. Check for: null/undefined issues, off-by-one errors, race conditions, resource leaks, error handling gaps.
    c. Agent #3: Scan for security vulnerabilities (OWASP top 10): injection flaws, XSS, auth bypass, sensitive data exposure, insecure dependencies, etc.
@@ -92,7 +94,7 @@ To do this, follow these steps precisely:
 
 4. Deduplicate: merge findings that describe the same problem at the same location (keep the clearest description and the higher severity). Do not drop anything else here.
 
-5. Audit every finding. Launch parallel Sonnet audit agents — one per finding, or one per file when a file has several findings. Each audit agent gets the finding(s), the context brief, the CLAUDE.md files from step 2, and the read-only and context rules verbatim. Its job is to independently try to prove or disprove the finding:
+5. Audit every finding. Launch parallel audit agents — one per finding, or one per file when a file has several findings. Each audit agent gets the finding(s), the context brief, the CLAUDE.md files from step 2, and the read-only and context rules verbatim. Its job is to independently try to prove or disprove the finding:
    - Read the relevant code and callers; check the claimed failure scenario actually happens. Reproduce it in a temp copy when that is practical.
    - Return a verdict per finding: `CONFIRMED` (real issue introduced by this change), `REFUTED` (not a real issue — give the concrete reason), or `NEEDS-INPUT` (real, but the right fix depends on a decision only the user can make — say what the decision is).
    - Correct the severity, location, or suggested fix if the original was wrong.
