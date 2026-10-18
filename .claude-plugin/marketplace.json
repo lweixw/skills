@@ -40,6 +40,13 @@
       "description": "Explain any topic, code, or error tailored to a specific audience: age, grade level, job role, or relationship.",
       "category": "communication",
       "tags": ["eli5", "explain", "teaching", "audience"]
+    },
+    {
+      "name": "asd",
+      "source": "./plugins/asd",
+      "description": "Explain, research, and write in ASD-STE100 Simplified Technical English.",
+      "category": "communication",
+      "tags": ["ste", "asd-ste100", "technical-writing", "documentation", "plain-language"]
     }
   ]
 }

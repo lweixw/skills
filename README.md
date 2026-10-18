@@ -31,6 +31,7 @@ List what's available:
 | [`handoff`](plugins/handoff/) | Compact current conversation into handoff doc (OS temp dir) so a fresh agent can resume. |
 | [`claude-it`](plugins/claude-it/) | Scaffold a `CLAUDE.md` in the repo root from a bundled behavioral-guidelines template, localized to the project. |
 | [`eli5`](plugins/eli5/) | Explain any topic, code, or error tailored to an audience (age, grade, job role, relationship). Adapted from [dreambigou/eli5](https://github.com/dreambigou/eli5) (MIT). |
+| [`asd`](plugins/asd/) | Explain, research, and write in ASD-STE100 Simplified Technical English: short sentences, one meaning per word, active voice. |
 
 ## Structure
 
